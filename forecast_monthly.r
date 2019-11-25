@@ -1,11 +1,10 @@
 setwd('D:/Users/cnguyen14/Documents/projects/adhoc/rmnt_forecast_emea')
 
-library(RODBC)
 library(forecast)
 
 ### data prep
 MD <- readxl::read_excel( path="./nts_2015_2018.xlsx")
-MD <- MD %>% melt("Month",  variable.name = "Year", value.name = "rmnt") 
+MD <- MD %>% melt("Month",  variable.name = "Year", value.name = "nt") 
 MD$Year <- MD$Year  %>% as.character() %>% as.numeric()
 MD <- msts(MD, seasonal.periods = c(12), start = min(MD$Year))
 
